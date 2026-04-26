@@ -36,10 +36,13 @@ const Header = () => {
   );
 };
 
+
+//8 Items
 const restaurantList = [
   {
     type: "restaurant",
     data: {
+      id: 0,
       name: "KFC",
       cuisines: ["Burgers", "Biryani", "American", "Snacks", "Fast Food"],
       avgRating: 4.3,
@@ -52,6 +55,7 @@ const restaurantList = [
   {
     type: "restaurant",
     data: {
+      id: 1,
       name: "Domino's Pizza",
       cuisines: ["Pizza", "Italian", "Fast Food"],
       avgRating: 4.2,
@@ -63,6 +67,7 @@ const restaurantList = [
   {
     type: "restaurant",
     data: {
+      id: 2,
       name: "A2B - Adyar Ananda Bhavan",
       cuisines: ["South Indian", "Sweets", "Snacks"],
       avgRating: 4.4,
@@ -74,6 +79,7 @@ const restaurantList = [
   {
     type: "restaurant",
     data: {
+      id: 3,
       name: "Burger King",
       cuisines: ["Burgers", "American", "Fast Food"],
       avgRating: 4.1,
@@ -85,6 +91,7 @@ const restaurantList = [
   {
     type: "restaurant",
     data: {
+      id: 4,
       name: "Saravana Bhavan",
       cuisines: ["South Indian", "Vegetarian"],
       avgRating: 4.5,
@@ -96,6 +103,7 @@ const restaurantList = [
   {
     type: "restaurant",
     data: {
+      id: 5,
       name: "Subway",
       cuisines: ["Healthy Food", "Salads", "Sandwiches"],
       avgRating: 4.0,
@@ -107,6 +115,7 @@ const restaurantList = [
   {
     type: "restaurant",
     data: {
+      id: 6,
       name: "Pizza Hut",
       cuisines: ["Pizza", "Italian", "Fast Food"],
       avgRating: 4.2,
@@ -118,6 +127,7 @@ const restaurantList = [
   {
     type: "restaurant",
     data: {
+      id: 7,
       name: "Barbeque Nation",
       cuisines: ["BBQ", "North Indian", "Grill"],
       avgRating: 4.3,
@@ -130,10 +140,10 @@ const restaurantList = [
 
 const RestaurantCard = (props) => {
   const { resData } = props;
-  const { name, cuisines, avgRating, costForTwo, imageLink, deliveryTime } = resData?.data; //Optional Chaining.
+  const { name, cuisines, avgRating, costForTwo, imageLink, deliveryTime } = resData?.data; //Optional Chaining.But its unnecessary now because all of api data is complete.
   return (
-    <div className="res-card" style={{ backgroundColor: "#f0f0f0" }}>
-      <img className="res-logo" src={imageLink} />
+    <div className="res-card">
+      <img className="res-logo" src={imageLink} alt={name}/>
       <h3>{name}</h3>
       <h4>{cuisines.join(", ")}</h4>
       <h4>{avgRating} stars</h4>
@@ -148,14 +158,11 @@ const Body = () => {
     <div className="body">
       <div className="search">Search</div>
       <div className="res-container">
-        <RestaurantCard resData={restaurantList[0]} />
-        <RestaurantCard resData={restaurantList[1]} />
-        <RestaurantCard resData={restaurantList[2]} />
-        <RestaurantCard resData={restaurantList[3]} />
-        <RestaurantCard resData={restaurantList[4]} />
-        <RestaurantCard resData={restaurantList[5]} />
-        <RestaurantCard resData={restaurantList[6]} />
-        <RestaurantCard resData={restaurantList[7]} />        
+        {
+          restaurantList.map((restaurant) => (
+            <RestaurantCard key={restaurant.data.id} resData = {restaurant}/>
+          ))
+        }      
       </div>
     </div>
   );
