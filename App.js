@@ -36,27 +36,41 @@ const Header = () => {
   );
 };
 
+const restaurantList = {
+  name: "KFC",
+  cuisines: ["Burgers", "Biryani", "American", "Snacks", "Fast Food"],
+  avgRating: 4.3,
+  costForTwo: 40000,
+  deliveryTime: 38,
+};
+
 const RestaurantCard = (props) => {
-  console.log(props);
+  const {resData} = props;
+  const {name,cuisines,avgRating,costForTwo,deliveryTime} = resData;
   return (
-    <div className="res-card" style={{"backgroundColor": "#f0f0f0"}}>
-      <img className="res-logo" src="https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?cs=srgb&dl=appetizer-bowl-delicious-1640772.jpg&fm=jpg" />
-      <h3>Meghana Foods</h3>
-      <h4>Biryani, North Indian, Asian</h4>
-      <h4>4.3 stars</h4>
-      <h4>40 minutes</h4>
+    <div className="res-card" style={{ backgroundColor: "#f0f0f0" }}>
+      <img
+        className="res-logo"
+        src="https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?cs=srgb&dl=appetizer-bowl-delicious-1640772.jpg&fm=jpg"
+      />
+      <h3>{name}</h3>
+      <h4>{cuisines.join(", ")}</h4>
+      <h4>{avgRating} stars</h4>
+      <h4>Cost for Two: {costForTwo/100} Rupees</h4>
+      <h4>{deliveryTime} minutes</h4>
     </div>
   );
 };
 
 const Body = () => {
-  return (<div className="body">
-    <div className="search">Search</div>
-    <div className="res-container">
-      <RestaurantCard resName="KFC" cuisine="Burgers"/>
-      <RestaurantCard />
+  return (
+    <div className="body">
+      <div className="search">Search</div>
+      <div className="res-container">
+        <RestaurantCard resData = {restaurantList}/>
+      </div>
     </div>
-  </div>);
+  );
 };
 
 const AppLayout = () => {
