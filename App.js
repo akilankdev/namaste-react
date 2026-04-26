@@ -36,27 +36,31 @@ const Header = () => {
   );
 };
 
-const restaurantList = {
-  name: "KFC",
-  cuisines: ["Burgers", "Biryani", "American", "Snacks", "Fast Food"],
-  avgRating: 4.3,
-  costForTwo: 40000,
-  deliveryTime: 38,
-};
+const restaurantList = [
+  {
+    type: "restaurant",
+    data: {
+      name: "KFC",
+      cuisines: ["Burgers", "Biryani", "American", "Snacks", "Fast Food"],
+      avgRating: 4.3,
+      costForTwo: 40000,
+      deliveryTime: 38,
+      imageLink:
+        "https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?cs=srgb&dl=appetizer-bowl-delicious-1640772.jpg&fm=jpg",
+    },
+  },
+];
 
 const RestaurantCard = (props) => {
-  const {resData} = props;
-  const {name,cuisines,avgRating,costForTwo,deliveryTime} = resData;
+  const { resData } = props;
+  const { name, cuisines, avgRating, costForTwo, imageLink, deliveryTime } = resData?.data; //Optional Chaining.
   return (
     <div className="res-card" style={{ backgroundColor: "#f0f0f0" }}>
-      <img
-        className="res-logo"
-        src="https://images.pexels.com/photos/1640772/pexels-photo-1640772.jpeg?cs=srgb&dl=appetizer-bowl-delicious-1640772.jpg&fm=jpg"
-      />
+      <img className="res-logo" src={imageLink} />
       <h3>{name}</h3>
       <h4>{cuisines.join(", ")}</h4>
       <h4>{avgRating} stars</h4>
-      <h4>Cost for Two: {costForTwo/100} Rupees</h4>
+      <h4>Cost for Two: {costForTwo / 100} Rupees</h4>
       <h4>{deliveryTime} minutes</h4>
     </div>
   );
@@ -67,7 +71,7 @@ const Body = () => {
     <div className="body">
       <div className="search">Search</div>
       <div className="res-container">
-        <RestaurantCard resData = {restaurantList}/>
+        <RestaurantCard resData={restaurantList[0]} />
       </div>
     </div>
   );
