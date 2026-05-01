@@ -1,9 +1,17 @@
 import RestaurantCard from "./RestaurantCard";
 import restaurantList from "../utils/mockData";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 const Body = () => {
-  const [listOfRestaurants, setListOfRestaurants] = useState(restaurantList);
+  const [listOfRestaurants, setListOfRestaurants] = useState([]);
 
+  useEffect(()=>{
+    setListOfRestaurants(restaurantList);
+  },[]);
+
+  if(listOfRestaurants.length === 0){
+    return <h1>Loading...</h1>;
+  }
+  
   return (
     <div className="body">
       <div className="filter">
