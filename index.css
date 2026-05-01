@@ -71,3 +71,8 @@
   background-color: #f0f0f0;
   border-radius: 10px;
 }   
+
+.login-btn {
+  padding:10px 10px;
+  cursor: pointer;
+}
