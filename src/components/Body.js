@@ -1,21 +1,45 @@
 import RestaurantCard from "./RestaurantCard";
 import restaurantList from "../utils/mockData";
 import Shimmer from "./Shimmer";
-import { useState,useEffect } from "react";
+import { useState, useEffect } from "react";
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
 
-  useEffect(()=>{
-    setListOfRestaurants(restaurantList);
-  },[]);
+  const [searchText, setSearchText] = useState("");
 
-  if(listOfRestaurants.length === 0){
+  useEffect(() => {
+    setListOfRestaurants(restaurantList);
+  }, []);
+
+  if (listOfRestaurants.length === 0) {
     return <Shimmer />;
   }
 
   return (
     <div className="body">
       <div className="filter">
+        <div className="search">
+          <input
+            type="text"
+            className="search-box"
+            placeholder="Search for restaurant"
+            value={searchText}
+            onChange={(e) => {
+              setSearchText(e.target.value);
+            }}
+          />
+          <button
+            className="search-btn"
+            onClick={() => {
+              const filteredList = listOfRestaurants.filter((res) =>
+                res.data.name.toLowerCase().includes(searchText.toLowerCase()),
+              );
+              setListOfRestaurants(filteredList);
+            }}
+          >
+            Search
+          </button>
+        </div>
         <button
           className="filter-btn"
           onClick={() => {
