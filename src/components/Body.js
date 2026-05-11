@@ -4,11 +4,14 @@ import Shimmer from "./Shimmer";
 import { useState, useEffect } from "react";
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
+  //Used this allRestaurants state variable to store the original list of restaurants and use it for filtering and resetting the filters. This way we can always refer back to the original list when needed.
+  const [allRestaurants, setAllRestaurants] = useState([]);
 
   const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
     setListOfRestaurants(restaurantList);
+    setAllRestaurants(restaurantList);
   }, []);
 
   if (listOfRestaurants.length === 0) {
@@ -31,7 +34,7 @@ const Body = () => {
           <button
             className="search-btn"
             onClick={() => {
-              const filteredList = listOfRestaurants.filter((res) =>
+              const filteredList = allRestaurants.filter((res) =>
                 res.data.name.toLowerCase().includes(searchText.toLowerCase()),
               );
               setListOfRestaurants(filteredList);
@@ -43,7 +46,7 @@ const Body = () => {
         <button
           className="filter-btn"
           onClick={() => {
-            const filteredList = restaurantList.filter(
+            const filteredList = allRestaurants.filter(
               (res) => res.data.avgRating >= 4,
             );
 
@@ -56,7 +59,7 @@ const Body = () => {
         <button
           className="reset-filter"
           onClick={() => {
-            setListOfRestaurants(restaurantList);
+            setListOfRestaurants(allRestaurants);
           }}
         >
           Reset filters
