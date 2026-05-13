@@ -1,5 +1,5 @@
 import { useState } from "react";
-import LOGO_URL from "../utils/constants";
+import {LOGO_URL} from "../utils/constants";
 
 const Header = () => {
   const [btnName, setBtnName] = useState("Login");
