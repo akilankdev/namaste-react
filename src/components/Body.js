@@ -4,14 +4,14 @@ import Shimmer from "./Shimmer";
 import { useState, useEffect } from "react";
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
-  //Used this allRestaurants state variable to store the original list of restaurants and use it for filtering and resetting the filters. This way we can always refer back to the original list when needed.
-  const [allRestaurants, setAllRestaurants] = useState([]);
+  //Used filteredRestaurants state variable to store the filtered list while preventing the modification of Original list listOfRestaurants.
+  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
 
   const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
     setListOfRestaurants(restaurantList);
-    setAllRestaurants(restaurantList);
+    setFilteredRestaurants(restaurantList);
   }, []);
 
   if (listOfRestaurants.length === 0) {
@@ -34,10 +34,10 @@ const Body = () => {
           <button
             className="search-btn"
             onClick={() => {
-              const filteredList = allRestaurants.filter((res) =>
+              const filteredList = listOfRestaurants.filter((res) =>
                 res.data.name.toLowerCase().includes(searchText.toLowerCase()),
               );
-              setListOfRestaurants(filteredList);
+              setFilteredRestaurants(filteredList);
             }}
           >
             Search
@@ -46,11 +46,11 @@ const Body = () => {
         <button
           className="filter-btn"
           onClick={() => {
-            const filteredList = allRestaurants.filter(
+            const filteredList = listOfRestaurants.filter(
               (res) => res.data.avgRating >= 4,
             );
 
-            setListOfRestaurants(filteredList);
+            setFilteredRestaurants(filteredList);
           }}
         >
           Top-rated Restaurant
@@ -59,14 +59,14 @@ const Body = () => {
         <button
           className="reset-filter"
           onClick={() => {
-            setListOfRestaurants(allRestaurants);
+            setFilteredRestaurants(listOfRestaurants);
           }}
         >
           Reset filters
         </button>
       </div>
       <div className="res-container">
-        {listOfRestaurants.map((restaurant) => (
+        {filteredRestaurants.map((restaurant) => (
           <RestaurantCard key={restaurant.data.id} resData={restaurant} />
         ))}
       </div>
