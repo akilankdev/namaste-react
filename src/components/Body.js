@@ -14,12 +14,10 @@ const Body = () => {
 
   const fetchData = async () => {
     try {
-      const data = await fetch("https://namastedev.com/api/v1/listRestaurants");
+      const data = await fetch("https://corsproxy.io/?https://namastedev.com/api/v1/listRestaurants");
       const json = await data.json();
 
       const restaurants = json.data.data.cards[1].card.card.gridElements.infoWithStyle.restaurants;
-
-      console.log(restaurants);
 
       setListOfRestaurants(restaurants);
       setFilteredRestaurants(restaurants);
