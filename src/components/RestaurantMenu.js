@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import {useParams} from "react-router-dom";
 import Shimmer from "./Shimmer";
 import RestaurantCategory from "./RestaurantCategory";
 import {MENU_API} from "../utils/constants"
@@ -6,13 +7,18 @@ import {MENU_API} from "../utils/constants"
 const RestaurantMenu = () => {
   const [resInfo, setResInfo] = useState(null);
 
+  /* const params = useParams();
+  console.log(params); Gives us an OBJECT */
+  const {resId} = useParams();
+ 
   useEffect(() => {
     fetchData();
   }, []);
 
   const fetchData = async () => {
     const data = await fetch(
-      MENU_API + "123456",
+      //Dynamic Restaurant ID is being put in the Menu API.Now it should show menu based on the URL's ID parameter.Try it out.
+      MENU_API + resId,
     );
     const json = await data.json();
     setResInfo(json);
