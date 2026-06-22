@@ -1,9 +1,7 @@
 import { useState } from "react";
 
-
-//{data} - destructuring the props name and value
 const RestaurantCategory = ({ data }) => {
-  //For toggling ACCORDION style UI,initially false means menuitems wont show,when clicked showItems state becomes true and component rerenders with menuitems.
+  //For toggling ACCORDION style UI
   const [showItems, setShowItems] = useState(false);
 
   const menuItems = data.itemCards;
@@ -20,7 +18,7 @@ const RestaurantCategory = ({ data }) => {
         <ul>
           {menuItems.map((MenuItem) => {
             return (
-              <li key={MenuItem.card.info.id}>{MenuItem.card.info.name}</li>
+              <li key={MenuItem.card.info.id}>{MenuItem.card.info.name} - {"Rs."}{MenuItem.card.info.price / 100}</li>
             );
           })}
         </ul>
