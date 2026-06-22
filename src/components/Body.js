@@ -1,4 +1,5 @@
 import RestaurantCard from "./RestaurantCard";
+import { RESTAURANT_LIST_API } from "../utils/constants";
 
 import Shimmer from "./Shimmer";
 import { useState, useEffect } from "react";
@@ -14,7 +15,7 @@ const Body = () => {
 
   const fetchData = async () => {
     try {
-      const data = await fetch("https://corsproxy.io/?https://namastedev.com/api/v1/listRestaurants");
+      const data = await fetch(RESTAURANT_LIST_API);
       const json = await data.json();
 
       const restaurants = json.data.data.cards[1].card.card.gridElements.infoWithStyle.restaurants;
