@@ -1,8 +1,9 @@
+import User from "./User";
 const About = () => {
   return (
     <div>
       <h1>About Us</h1>
-      <h2>Swiggy Ap</h2>
+      <User name="Akilan" location="Tamil Nadu" />
     </div>
   );
 }

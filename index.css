@@ -91,3 +91,9 @@ li a {
   display: flex;
   column-gap: 10px;
 }
+
+/* ABout us */
+.user-card {
+  padding: 10px;
+  border: 1px black solid;
+}
