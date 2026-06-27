@@ -2,6 +2,7 @@ import React from "react";
 
 class UserClass extends React.Component {
   constructor(props) {
+    console.log("cons called");
     super(props);
 
     this.state = {
@@ -18,10 +19,21 @@ class UserClass extends React.Component {
     this.setState({
       userInfo: json,
     });
+    console.log("compDidMount");
+  }
 
+  //Executes after real DOM is updated with setState's value
+  componentDidUpdate() {
+    console.log("compDidUpdate");
+  }
+
+  //Executes when this component is removed from the DOM.
+  componentWillUnmount() {
+    console.log("compWillUnmount");
   }
 
   render() {
+    console.log("render is called");
     const { name, location,avatar_url,login } = this.state.userInfo;
     return (
       <div className="user-card">
