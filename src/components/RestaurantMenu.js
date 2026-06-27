@@ -1,29 +1,20 @@
-import { useEffect, useState } from "react";
+
 import {useParams} from "react-router-dom";
 import Shimmer from "./Shimmer";
 import RestaurantCategory from "./RestaurantCategory";
-import {MENU_API} from "../utils/constants"
+import useRestaurantMenu from "../utils/useRestaurantMenu";
+
 
 const RestaurantMenu = () => {
-  const [resInfo, setResInfo] = useState(null);
 
   /* const params = useParams();
   console.log(params); Gives us an OBJECT */
+
   const {resId} = useParams();
+
+  //useRestaurantMenu() is a Custom hook which handles the logic of fetching the Menu data.By doin this,our code is much cleaner and testable.Now this component solely handles only the UI part,not the logic part.
+  const resInfo = useRestaurantMenu(resId);
  
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    const data = await fetch(
-      //Dynamic Restaurant ID is being put in the Menu API.Now it should show menu based on the URL's ID parameter.Try it out.
-      MENU_API + resId,
-    );
-    const json = await data.json();
-    setResInfo(json);
-  };
-
   if (resInfo === null) return <Shimmer />;
 
   const {
