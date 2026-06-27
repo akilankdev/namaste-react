@@ -97,3 +97,8 @@ li a {
   padding: 10px;
   border: 1px black solid;
 }
+
+.github-img {
+  width: 200px;
+  height: auto;
+}
