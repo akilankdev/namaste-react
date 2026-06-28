@@ -1,36 +1,23 @@
 import RestaurantCard from "./RestaurantCard";
-import { RESTAURANT_LIST_API } from "../utils/constants";
+import useRestaurantList from "../utils/useRestaurantList";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import Shimmer from "./Shimmer";
 import { useState, useEffect } from "react";
+
 const Body = () => {
-  const [listOfRestaurants, setListOfRestaurants] = useState([]);
+  
+  //custom hook to fetch API data
+  const listOfRestaurants = useRestaurantList();
+
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
 
   const [searchText, setSearchText] = useState("");
 
-
-  //create a custom hook to fetch API data here.
+  //we should include the state variable's value inside dependancy array.
   useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    try {
-      const data = await fetch(RESTAURANT_LIST_API);
-      const json = await data.json();
-
-      const restaurants =
-        json.data.data.cards[1].card.card.gridElements.infoWithStyle
-          .restaurants;
-
-      setListOfRestaurants(restaurants);
-      setFilteredRestaurants(restaurants);
-    } catch (err) {
-      console.log("Error: ", err);
-    }
-  };
+    setFilteredRestaurants(listOfRestaurants);
+  },[listOfRestaurants]);
 
   const onlineStatus = useOnlineStatus();
   if(onlineStatus === false)
