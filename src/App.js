@@ -8,6 +8,7 @@ import RestaurantMenu from "./components/RestaurantMenu";
 import Error from "./components/Error";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 
+//Makes the component lazy component.So it will be loaded only when it is required.
 const Grocery = lazy(() => import("./components/Grocery"));
 
 const App = () => {
@@ -39,6 +40,7 @@ const appRouter = createBrowserRouter([
       {
         path: "/grocery",
         element: (
+          //While the component's JS code is downloading,browser shows the "Loading..." message till then.
           <Suspense fallback={<h1>Loading...</h1>}>
             <Grocery />
           </Suspense>
