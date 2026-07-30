@@ -17,6 +17,7 @@ const Body = () => {
   //we should include the state variable's value inside dependancy array.
   useEffect(() => {
     setFilteredRestaurants(listOfRestaurants);
+    console.log(listOfRestaurants);
   },[listOfRestaurants]);
 
   const onlineStatus = useOnlineStatus();

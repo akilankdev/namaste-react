@@ -17,8 +17,16 @@ const useRestaurantList = () => {
       const restaurants =
         json.data.data.cards[1].card.card.gridElements.infoWithStyle
           .restaurants;
+      
+      const updatedRestaurants = restaurants.map((restaurant, index) => ({
+        ...restaurant,
+        info: {
+          ...restaurant.info,
+          promoted: index < 4,
+        },
+      }));
 
-      setListOfRestaurants(restaurants);
+      setListOfRestaurants(updatedRestaurants);
     } catch (err) {
       console.log("ERROR :", err);
     }
