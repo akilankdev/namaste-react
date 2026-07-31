@@ -1,9 +1,10 @@
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard,{withPromotedLabel} from "./RestaurantCard";
 import useRestaurantList from "../utils/useRestaurantList";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import Shimmer from "./Shimmer";
 import { useState, useEffect } from "react";
+
 
 const Body = () => {
   
@@ -13,6 +14,9 @@ const Body = () => {
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
 
   const [searchText, setSearchText] = useState("");
+
+  //Higher order Component
+  const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
 
   //we should include the state variable's value inside dependancy array.
   useEffect(() => {
@@ -85,13 +89,14 @@ const Body = () => {
             to={"restaurants/" + restaurant.info.id}
             key={restaurant.info.id}
           >
-            {" "}
-            <RestaurantCard resData={restaurant} />{" "}
+            {restaurant.info.promoted? <RestaurantCardPromoted resData={restaurant}/> : <RestaurantCard resData={restaurant} />}
           </Link>
         ))}
       </div>
     </div>
   );
 };
+
+
 
 export default Body;

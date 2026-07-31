@@ -18,6 +18,7 @@ const useRestaurantList = () => {
         json.data.data.cards[1].card.card.gridElements.infoWithStyle
           .restaurants;
       
+      //adding promoted field for showing promoted label in some cards.
       const updatedRestaurants = restaurants.map((restaurant, index) => ({
         ...restaurant,
         info: {
