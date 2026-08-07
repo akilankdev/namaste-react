@@ -2,6 +2,7 @@ import { useState } from "react";
 
 const RestaurantCategory = ({ data }) => {
   //For toggling ACCORDION style UI
+  console.log();
   const [showItems, setShowItems] = useState(false);
 
   const menuItems = data.itemCards;

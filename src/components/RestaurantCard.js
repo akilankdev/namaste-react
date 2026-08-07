@@ -12,7 +12,7 @@ const RestaurantCard = (props) => {
     cloudinaryImageId,
   } = resData?.info; //Optional Chaining.
   return (
-    <div className="res-card  w-[200px] m-4 p-4 bg-gray-100 hover:bg-gray-200 rounded">
+    <div className="res-card  w-50 m-4 p-4 bg-gray-100 hover:bg-gray-200 rounded">
       <img
         className="res-logo rounded"
         src={CDN_URL + cloudinaryImageId}
@@ -34,7 +34,7 @@ export const withPromotedLabel = (RestaurantCard) => {
   return (props) => {
     return (
       <div>
-        <label>Promoted</label>
+        <label className="absolute bg-black text-white m-2 py-1 px-2 rounded-lg">Promoted</label>
         <RestaurantCard {...props}/>
       </div>
     );

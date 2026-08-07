@@ -34,8 +34,7 @@ const RestaurantMenu = () => {
   //Filters the empty categories.
   const categories = cards.filter((category) => category?.card?.card?.title);
 
-  return (
-    <div className="menu">
+  {/* <div className="menu">
       <h1>{name}</h1>
       <h2>{avgRatingString}</h2>
       <h2>{totalRatingsString}</h2>
@@ -56,7 +55,14 @@ const RestaurantMenu = () => {
           );
         })}
       </ul>
+    </div> */};
+
+  return (
+    <div className="text-center">
+      <h1 className="font-bold m-6 text-2xl">{name}</h1>
+      <h2 className="font-bold text-lg">{cuisines.join(", ")} - {costForTwoMessage}</h2>
     </div>
+    
   );
 };
 
