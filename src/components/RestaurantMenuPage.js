@@ -30,7 +30,6 @@ const RestaurantMenu = () => {
     resInfo?.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR.cards || [];
   //Filters the empty categories.
   const categories = cards.filter((category) => category?.card?.card?.title);
-
   return (
     <div className="text-center">
       <h1 className="font-bold m-6 text-2xl">{name}</h1>
@@ -38,7 +37,7 @@ const RestaurantMenu = () => {
         {cuisines.join(", ")} - {costForTwoMessage}
       </h2>
       {categories.map((category) => 
-        <RestaurantCategory data={category?.card?.card} /> )}
+        <RestaurantCategory key={category?.card?.card?.title} data={category?.card?.card} /> )}
     </div>
   );
 };
