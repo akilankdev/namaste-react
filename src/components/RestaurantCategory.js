@@ -2,7 +2,6 @@ import { useState } from "react";
 import ItemList from "./ItemList";
 
 const RestaurantCategory = ({ data }) => {
-  console.log(data);
   return (
     <div>
       {/* w-6/12 is used to allocate half the width because tailwind divides page into 12 sections. */}
@@ -15,7 +14,7 @@ const RestaurantCategory = ({ data }) => {
           <span>🔽</span>
         </div>
 
-        <ItemList />
+        <ItemList items={data.itemCards}/>
       </div>
     </div>
   );
