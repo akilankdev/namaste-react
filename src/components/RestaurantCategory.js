@@ -13,7 +13,7 @@ const RestaurantCategory = ({ data }) => {
           </span>
           <span>🔽</span>
         </div>
-
+      
         <ItemList items={data.itemCards}/>
       </div>
     </div>

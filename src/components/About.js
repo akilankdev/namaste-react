@@ -23,20 +23,3 @@ class About extends React.Component {
 }
 
 export default About;
-
-/*
-RENDER PHASE BEGINS...
--parent constructor
--parent render
-  -child1 cons
-  -child1 render
-
-  -child2 cons
-  -child2 render
-
-COMMIT PHASE BEGINS...
--child1 componentDidMount
--child2 componentDidMount
--Parent componentDidMount
-  
-*/
