@@ -43,7 +43,7 @@ const RestaurantMenu = () => {
         data={category?.card?.card}
         // index={index}
         // setShowfunction={setShowindex}
-        showItems={false}
+        showItems={index === 1 && true}
         /> )}
     </div>
   );
