@@ -2,12 +2,13 @@ import { useParams } from "react-router-dom";
 import Shimmer from "./Shimmer";
 import RestaurantCategory from "./RestaurantCategory";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
+import { useState } from "react";
 
 const RestaurantMenu = () => {
+
+  const [showIndex,setShowIndex] = useState(0);
   /* const params = useParams();
   console.log(params); Gives us an OBJECT */
-  // const [showIndex,setShowIndex] = useState(0);
-
   const { resId } = useParams();
 
   //useRestaurantMenu() is a Custom hook which handles the logic of fetching the Menu data.By doin this,our code is much cleaner and testable.Now this component solely handles only the UI part,not the logic part.
@@ -43,7 +44,7 @@ const RestaurantMenu = () => {
         data={category?.card?.card}
         // index={index}
         // setShowfunction={setShowindex}
-        showItems={index === 1 && true}
+        showItems={index === showIndex && true}
         /> )}
     </div>
   );
