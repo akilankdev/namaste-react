@@ -6,12 +6,10 @@ import { useState } from "react";
 
 const RestaurantMenu = () => {
 
-  const [showIndex,setShowIndex] = useState(0);
-  /* const params = useParams();
-  console.log(params); Gives us an OBJECT */
+  const [showIndex,setShowIndex] = useState(null);
+  
   const { resId } = useParams();
 
-  //useRestaurantMenu() is a Custom hook which handles the logic of fetching the Menu data.By doin this,our code is much cleaner and testable.Now this component solely handles only the UI part,not the logic part.
   const resInfo = useRestaurantMenu(resId);
 
   if (resInfo === null) return <Shimmer />;
@@ -42,9 +40,11 @@ const RestaurantMenu = () => {
         <RestaurantCategory 
         key={category?.card?.card?.title}
         data={category?.card?.card}
-        // index={index}
-        // setShowfunction={setShowindex}
+        index={index}
+        //the below condition will check whether the current component's index is similar to state variable's value.If its true then expand otherwise no need to render <ItemsList />.
         showItems={index === showIndex && true}
+        setShowItems={setShowIndex}
+        //INDEX is used to expand one accordion at once.We pass the INDEX and UPDATION of state variable to the child through PROPS so that when the user clicks the accordion,it changes the state variable value to current index and that will make the current accordion expanded and keep the others as collapsed.
         /> )}
     </div>
   );

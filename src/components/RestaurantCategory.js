@@ -1,10 +1,11 @@
 import { useState } from "react";
 import ItemList from "./ItemList";
 
-const RestaurantCategory = ({ data,showItems }) => {
+const RestaurantCategory = ({ data,showItems,setShowItems,index }) => {
 
   const handleClick = () => {
-    
+    //this will call the setShowIndex(index) in the parent.
+    setShowItems(index);
   }
   return (
     <div>
