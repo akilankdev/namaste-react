@@ -6,6 +6,7 @@ import useRestaurantMenu from "../utils/useRestaurantMenu";
 const RestaurantMenu = () => {
   /* const params = useParams();
   console.log(params); Gives us an OBJECT */
+  // const [showIndex,setShowIndex] = useState(0);
 
   const { resId } = useParams();
 
@@ -36,8 +37,14 @@ const RestaurantMenu = () => {
       <h2 className="font-bold text-lg">
         {cuisines.join(", ")} - {costForTwoMessage}
       </h2>
-      {categories.map((category) => 
-        <RestaurantCategory key={category?.card?.card?.title} data={category?.card?.card} /> )}
+      {categories.map((category,index) => 
+        <RestaurantCategory 
+        key={category?.card?.card?.title}
+        data={category?.card?.card}
+        // index={index}
+        // setShowfunction={setShowindex}
+        showItems={false}
+        /> )}
     </div>
   );
 };
