@@ -1,11 +1,12 @@
 import { useState } from "react";
 import ItemList from "./ItemList";
 
-const RestaurantCategory = ({ data,showItems,setShowItems,index }) => {
+const RestaurantCategory = ({ data,showItems,setShowItems,index,showIndex }) => {
 
   const handleClick = () => {
     //this will call the setShowIndex(index) in the parent.
-    setShowItems(index);
+    //user clicks first accordion => showIndex:0(expanded) then user clicks it again,the condition checks whether this accordion's index and showIndex value is same,if its same then replace 0 with NULL for showIndex so that it collapses.But if they are different,that means user clicked a new accordion, then update the showIndex value and it collapses the current one and expands the new accordion.
+    setShowItems(showIndex === index? null : index)
   }
   return (
     <div>

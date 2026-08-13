@@ -6,6 +6,7 @@ import { useState } from "react";
 
 const RestaurantMenu = () => {
 
+  //hold the index of the component whose accordion header is clicked by the user.
   const [showIndex,setShowIndex] = useState(null);
   
   const { resId } = useParams();
@@ -41,10 +42,11 @@ const RestaurantMenu = () => {
         key={category?.card?.card?.title}
         data={category?.card?.card}
         index={index}
-        //the below condition will check whether the current component's index is similar to state variable's value.If its true then expand otherwise no need to render <ItemsList />.
+        //We are passing showIndex because for collapsing the currently expanded accordion leaving every accordion collapsed again.
+        showIndex={showIndex}
         showItems={index === showIndex && true}
         setShowItems={setShowIndex}
-        //INDEX is used to expand one accordion at once.We pass the INDEX and UPDATION of state variable to the child through PROPS so that when the user clicks the accordion,it changes the state variable value to current index and that will make the current accordion expanded and keep the others as collapsed.
+        
         /> )}
     </div>
   );
