@@ -2,9 +2,14 @@ import { useState } from "react";
 import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext.js";
+import { useContext } from "react";
 
 const Header = () => {
   const [btnName, setBtnName] = useState("Login");
+
+  //Pass the context which you want to use.There could be multiple contexts,pass the one which you want to use.import both the context and hook beforehand.
+  const data = useContext(UserContext);
 
   return (
     <div className="header flex items-center justify-between bg-pink-100 mb-2 shadow-lg">
@@ -41,6 +46,7 @@ const Header = () => {
               {btnName}
             </button>
           </li>
+          <li className="px-4 font-bold">{data.loggedInUser}</li>
         </ul>
       </div>
     </div>
