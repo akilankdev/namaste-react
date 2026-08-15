@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useContext } from "react";
+import React, { lazy, Suspense, useContext,useState,useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -13,14 +13,13 @@ import UserContext from "./utils/UserContext";
 const Grocery = lazy(() => import("./components/Grocery"));
 
 const App = () => {
+  const [userName,setUserName] = useState("Akilan");
+  
   return (
-    //Header only shows Vimal name as context.All the other components use the "Akil" as the context.This is how we can separately consume context and rewrite the context's value.
-    <UserContext.Provider value={{ loggedInUser: "Akil" }}>
+    //Inorder to modify the userName in BODY component,we need to pass the setUserName() as context to let BODY component use it to modify the context data.
+    <UserContext.Provider value={{ loggedInUser: userName,setUserName }}>
       <div className="app">
-        {/* We can use Contexts in specific components also.We just need to wrap the components with the "contextName.Provider",all the outside components will use the default context. */}
-        <UserContext.Provider value={{ loggedInUser: "Vimal" }}>
           <Header />
-        </UserContext.Provider>
         <Outlet />
       </div>
     </UserContext.Provider>
