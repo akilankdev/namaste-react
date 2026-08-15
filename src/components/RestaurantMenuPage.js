@@ -2,12 +2,11 @@ import { useParams } from "react-router-dom";
 import Shimmer from "./Shimmer";
 import RestaurantCategory from "./RestaurantCategory";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
-import { useState,useContext } from "react";
-import UserContext from "../utils/UserContext";
+import { useState } from "react";
+
 
 const RestaurantMenu = () => {
-  //to test whether I can use the same context inside this component also.
-  const {loggedInUser} = useContext(UserContext);
+
   //hold the index of the component whose accordion header is clicked by the user.
   const [showIndex,setShowIndex] = useState(null);
   
@@ -36,7 +35,6 @@ const RestaurantMenu = () => {
 
   return (
     <div className="text-center">
-      <h1 className="font-bold m-6 text-2xl">{loggedInUser}</h1>
       <h1 className="font-bold m-6 text-2xl">{name}</h1>
       <h2 className="font-bold text-lg">
         {cuisines.join(", ")} - {costForTwoMessage}

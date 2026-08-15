@@ -8,7 +8,6 @@ import { useContext } from "react";
 const Header = () => {
   const [btnName, setBtnName] = useState("Login");
 
-  //Pass the context which you want to use.There could be multiple contexts,pass the one which you want to use.import both the context and hook beforehand.
   const data = useContext(UserContext);
 
   return (
