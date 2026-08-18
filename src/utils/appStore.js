@@ -1,9 +1,10 @@
 import {configureStore} from "@reduxjs/toolkit";
+import cartReducer from "./cartSlice.js";
+//We just imported the combined reducer function into store.
 
-//we will include slice inside the configuration later on.We should not leave reducers as empty,it currently throws error.
 const appStore = configureStore({
   reducer: {
-
+    cart: cartReducer,
   },
 });
 
