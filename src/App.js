@@ -8,21 +8,22 @@ import RestaurantMenuPage from "./components/RestaurantMenuPage";
 import Error from "./components/Error";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import UserContext from "./utils/UserContext";
+import appStore from "./utils/appStore";
+import { Provider } from "react-redux";
 
-//Makes the component lazy component.So it will be loaded only when it is required.
 const Grocery = lazy(() => import("./components/Grocery"));
 
 const App = () => {
   const [userName,setUserName] = useState("Akilan");
   
   return (
-    //Inorder to modify the userName in BODY component,we need to pass the setUserName() as context to let BODY component use it to modify the context data.
-    <UserContext.Provider value={{ loggedInUser: userName,setUserName }}>
+    //Provider uses the key store predefinedly,So we just pass our store into it as a props.We need to wrap our app inside Provider so that our app gets access to the store.
+    <Provider store={appStore}>
       <div className="app">
           <Header />
         <Outlet />
       </div>
-    </UserContext.Provider>
+    </Provider>
   );
 };
 
