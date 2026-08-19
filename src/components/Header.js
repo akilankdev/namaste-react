@@ -11,6 +11,8 @@ const Header = () => {
 
   const cartItems = useSelector((store) => store.cart.items);
 
+  console.log(cartItems);
+
   const data = useContext(UserContext);
 
   return (
